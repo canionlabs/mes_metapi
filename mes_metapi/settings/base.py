@@ -41,6 +41,7 @@ DEFAULT_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.common',
     'apps.organizations'
 ]
 
