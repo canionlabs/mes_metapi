@@ -1,0 +1,5 @@
+-r common.txt
+
+pytest==4.2.0
+pytest-django==3.4.7
+model_mommy==1.6.0
