@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: mes_metapi_nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/src
+      - ./config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - web
+
+  web:
+    build:
+      context: .
+      args:
+        requirements: requirements/dev.txt
+    container_name: mes_metapi_web
+    command: python manage.py migrate --noinput
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/project
+    expose:
+      - "8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=mes_metapi.settings.dev
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:10.1-alpine
+    container_name: mes_metapi_postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
