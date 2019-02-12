@@ -17,10 +17,8 @@ def test_organization_creation():
     org.save()
 
     assert org.name == ORG_NAME
-    assert (
-        org.created_at <= timezone.now() and
-        org.created_at >= timezone.now() - timedelta(seconds=5)
-    )
+    assert org.created_at <= timezone.now()
+    assert org.created_at >= timezone.now() - timedelta(seconds=5)
 
 
 @pytest.mark.django_db
