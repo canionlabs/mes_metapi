@@ -42,7 +42,8 @@ DEFAULT_APPS = [
 
 LOCAL_APPS = [
     'apps.common',
-    'apps.organizations'
+    'apps.organizations',
+    'apps.boards',
 ]
 
 THIRD_PARTY_APPS = []
